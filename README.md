@@ -1,59 +1,710 @@
-# AngularApp
+# Angular 22 CLI Commands – BankLoan Project
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.24.
+## 1. Core Architecture
 
-## Development server
+### 1.1 Constants
 
-To start a local development server, run:
+Angular CLI does not have a `constant` generator.
 
-```bash
-ng serve
-```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+**Create folder:**
 
 ```bash
-ng generate component component-name
+mkdir src/app/core/constants
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+**Create file:**
 
 ```bash
-ng generate --help
+type nul > src/app/core/constants/constants.ts
 ```
 
-## Building
+> Windows CMD command.
 
-To build the project run:
+Expected file:
+
+```text
+src/app/core/constants/constants.ts
+```
+
+---
+
+### 1.2 Auth Guard
+
+**Full command:**
 
 ```bash
-ng build
+ng generate guard core/guards/auth --type=guard
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+**Shortcut:**
 
 ```bash
-ng test
+ng g g core/guards/auth --type=guard
 ```
 
-## Running end-to-end tests
+Expected file:
 
-For end-to-end (e2e) testing, run:
+```text
+src/app/core/guards/auth.guard.ts
+```
+
+---
+
+### 1.3 Auth Interceptor
+
+**Full command:**
 
 ```bash
-ng e2e
+ng generate interceptor core/interceptors/auth --type=interceptor
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+**Shortcut:**
 
-## Additional Resources
+```bash
+ng g interceptor core/interceptors/auth --type=interceptor
+```
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Expected file:
+
+```text
+src/app/core/interceptors/auth.interceptor.ts
+```
+
+---
+
+### 1.4 Auth Service
+
+**Full command:**
+
+```bash
+ng generate service core/services/auth --type=service
+```
+
+**Shortcut:**
+
+```bash
+ng g s core/services/auth --type=service
+```
+
+Expected file:
+
+```text
+src/app/core/services/auth.service.ts
+```
+
+---
+
+## 2. Core Models
+
+### 2.1 Auth Model
+
+For a TypeScript interface/model file, use the interface generator.
+
+**Full command:**
+
+```bash
+ng generate interface core/models/auth --type=model
+```
+
+**Shortcut:**
+
+```bash
+ng g i core/models/auth --type=model
+```
+
+Expected file:
+
+```text
+src/app/core/models/auth.model.ts
+```
+
+---
+
+### 2.2 User Model
+
+**Full command:**
+
+```bash
+ng generate interface core/models/user --type=model
+```
+
+**Shortcut:**
+
+```bash
+ng g i core/models/user --type=model
+```
+
+Expected file:
+
+```text
+src/app/core/models/user.model.ts
+```
+
+---
+
+## 3. Feature Pages
+
+For your project, pages are generated as standalone Angular components.
+
+### 3.1 Login
+
+**Full command:**
+
+```bash
+ng generate component features/auth/login --type=page
+```
+
+**Shortcut:**
+
+```bash
+ng g c features/auth/login --type=page
+```
+
+Expected:
+
+```text
+features/auth/login/
+├── login.page.ts
+├── login.page.html
+├── login.page.css
+└── login.page.spec.ts
+```
+
+---
+
+### 3.2 Register
+
+**Full command:**
+
+```bash
+ng generate component features/auth/register --type=page
+```
+
+**Shortcut:**
+
+```bash
+ng g c features/auth/register --type=page
+```
+
+Expected:
+
+```text
+features/auth/register/
+├── register.page.ts
+├── register.page.html
+├── register.page.css
+└── register.page.spec.ts
+```
+
+---
+
+### 3.3 Dashboard
+
+**Full command:**
+
+```bash
+ng generate component features/dashboard --type=page
+```
+
+**Shortcut:**
+
+```bash
+ng g c features/dashboard --type=page
+```
+
+Expected:
+
+```text
+features/dashboard/
+├── dashboard.page.ts
+├── dashboard.page.html
+├── dashboard.page.css
+└── dashboard.page.spec.ts
+```
+
+---
+
+### 3.4 Loan List
+
+**Full command:**
+
+```bash
+ng generate component features/loans/loan-list --type=page
+```
+
+**Shortcut:**
+
+```bash
+ng g c features/loans/loan-list --type=page
+```
+
+Expected:
+
+```text
+features/loans/loan-list/
+├── loan-list.page.ts
+├── loan-list.page.html
+├── loan-list.page.css
+└── loan-list.page.spec.ts
+```
+
+---
+
+### 3.5 Loan Apply
+
+**Full command:**
+
+```bash
+ng generate component features/loans/loan-apply --type=page
+```
+
+**Shortcut:**
+
+```bash
+ng g c features/loans/loan-apply --type=page
+```
+
+Expected:
+
+```text
+features/loans/loan-apply/
+├── loan-apply.page.ts
+├── loan-apply.page.html
+├── loan-apply.page.css
+└── loan-apply.page.spec.ts
+```
+
+---
+
+### 3.6 Loan Details
+
+**Full command:**
+
+```bash
+ng generate component features/loans/loan-details --type=page
+```
+
+**Shortcut:**
+
+```bash
+ng g c features/loans/loan-details --type=page
+```
+
+Expected:
+
+```text
+features/loans/loan-details/
+├── loan-details.page.ts
+├── loan-details.page.html
+├── loan-details.page.css
+└── loan-details.page.spec.ts
+```
+
+---
+
+### 3.7 Profile
+
+**Full command:**
+
+```bash
+ng generate component features/profile --type=page
+```
+
+**Shortcut:**
+
+```bash
+ng g c features/profile --type=page
+```
+
+Expected:
+
+```text
+features/profile/
+├── profile.page.ts
+├── profile.page.html
+├── profile.page.css
+└── profile.page.spec.ts
+```
+
+---
+
+# 4. Layouts
+
+## 4.1 Auth Layout
+
+**Full command:**
+
+```bash
+ng generate component layouts/auth-layout --type=layout
+```
+
+**Shortcut:**
+
+```bash
+ng g c layouts/auth-layout --type=layout
+```
+
+Expected:
+
+```text
+layouts/auth-layout/
+├── auth-layout.layout.ts
+├── auth-layout.layout.html
+├── auth-layout.layout.css
+└── auth-layout.layout.spec.ts
+```
+
+---
+
+## 4.2 Main Layout
+
+**Full command:**
+
+```bash
+ng generate component layouts/main-layout --type=layout
+```
+
+**Shortcut:**
+
+```bash
+ng g c layouts/main-layout --type=layout
+```
+
+Expected:
+
+```text
+layouts/main-layout/
+├── main-layout.layout.ts
+├── main-layout.layout.html
+├── main-layout.layout.css
+└── main-layout.layout.spec.ts
+```
+
+---
+
+# 5. Shared Components
+
+## 5.1 Header
+
+**Full command:**
+
+```bash
+ng generate component shared/components/header --type=component
+```
+
+**Shortcut:**
+
+```bash
+ng g c shared/components/header --type=component
+```
+
+Expected:
+
+```text
+shared/components/header/
+├── header.component.ts
+├── header.component.html
+├── header.component.css
+└── header.component.spec.ts
+```
+
+---
+
+## 5.2 Sidebar
+
+**Full command:**
+
+```bash
+ng generate component shared/components/sidebar --type=component
+```
+
+**Shortcut:**
+
+```bash
+ng g c shared/components/sidebar --type=component
+```
+
+Expected:
+
+```text
+shared/components/sidebar/
+├── sidebar.component.ts
+├── sidebar.component.html
+├── sidebar.component.css
+└── sidebar.component.spec.ts
+```
+
+---
+
+## 5.3 Loader
+
+**Full command:**
+
+```bash
+ng generate component shared/components/loader --type=component
+```
+
+**Shortcut:**
+
+```bash
+ng g c shared/components/loader --type=component
+```
+
+Expected:
+
+```text
+shared/components/loader/
+├── loader.component.ts
+├── loader.component.html
+├── loader.component.css
+└── loader.component.spec.ts
+```
+
+---
+
+# 6. Important Angular CLI Shortcuts
+
+| Purpose     | Full Command              | Shortcut           |
+| ----------- | ------------------------- | ------------------ |
+| Component   | `ng generate component`   | `ng g c`           |
+| Service     | `ng generate service`     | `ng g s`           |
+| Guard       | `ng generate guard`       | `ng g g`           |
+| Interface   | `ng generate interface`   | `ng g i`           |
+| Interceptor | `ng generate interceptor` | `ng g interceptor` |
+| Directive   | `ng generate directive`   | `ng g d`           |
+| Pipe        | `ng generate pipe`        | `ng g p`           |
+| Enum        | `ng generate enum`        | `ng g e`           |
+| Class       | `ng generate class`       | `ng g cl`          |
+
+---
+
+# 7. Complete Generation Order
+
+Run the commands in this order when creating the project structure.
+
+## Step 1 – Constants
+
+```bash
+mkdir src/app/core/constants
+```
+
+```bash
+type nul > src/app/core/constants/constants.ts
+```
+
+---
+
+## Step 2 – Models
+
+```bash
+ng g i core/models/auth --type=model
+ng g i core/models/user --type=model
+```
+
+---
+
+## Step 3 – Services
+
+```bash
+ng g s core/services/auth --type=service
+```
+
+---
+
+## Step 4 – Guard
+
+```bash
+ng g g core/guards/auth --type=guard
+```
+
+---
+
+## Step 5 – Interceptor
+
+```bash
+ng g interceptor core/interceptors/auth --type=interceptor
+```
+
+---
+
+## Step 6 – Auth Pages
+
+```bash
+ng g c features/auth/login --type=page
+ng g c features/auth/register --type=page
+```
+
+---
+
+## Step 7 – Dashboard
+
+```bash
+ng g c features/dashboard --type=page
+```
+
+---
+
+## Step 8 – Loan Pages
+
+```bash
+ng g c features/loans/loan-list --type=page
+ng g c features/loans/loan-apply --type=page
+ng g c features/loans/loan-details --type=page
+```
+
+---
+
+## Step 9 – Profile
+
+```bash
+ng g c features/profile --type=page
+```
+
+---
+
+## Step 10 – Layouts
+
+```bash
+ng g c layouts/auth-layout --type=layout
+ng g c layouts/main-layout --type=layout
+```
+
+---
+
+## Step 11 – Shared Components
+
+```bash
+ng g c shared/components/header --type=component
+ng g c shared/components/sidebar --type=component
+ng g c shared/components/loader --type=component
+```
+
+---
+
+# 8. Constants File – Important
+
+**Do NOT use:**
+
+```bash
+ng g c core/constants/constants --type=constant
+```
+
+Because:
+
+```text
+ng g c
+```
+
+means:
+
+```text
+ng generate component
+```
+
+Therefore Angular generates:
+
+```text
+constants.ts
+constants.html
+constants.css
+constants.spec.ts
+```
+
+That is why you received multiple files.
+
+For a constants file, create only:
+
+```text
+constants.ts
+```
+
+using:
+
+```bash
+mkdir src/app/core/constants
+type nul > src/app/core/constants/constants.ts
+```
+
+Final result:
+
+```text
+core/
+└── constants/
+    └── constants.ts
+```
+
+---
+
+# 9. Final BankLoan Structure
+
+```text
+src/
+└── app/
+    │
+    ├── core/
+    │   ├── constants/
+    │   │   └── constants.ts
+    │   │
+    │   ├── guards/
+    │   │   └── auth.guard.ts
+    │   │
+    │   ├── interceptors/
+    │   │   └── auth.interceptor.ts
+    │   │
+    │   ├── models/
+    │   │   ├── auth.model.ts
+    │   │   └── user.model.ts
+    │   │
+    │   └── services/
+    │       └── auth.service.ts
+    │
+    ├── features/
+    │   ├── auth/
+    │   │   ├── login/
+    │   │   └── register/
+    │   │
+    │   ├── dashboard/
+    │   │
+    │   ├── loans/
+    │   │   ├── loan-list/
+    │   │   ├── loan-apply/
+    │   │   └── loan-details/
+    │   │
+    │   └── profile/
+    │
+    ├── layouts/
+    │   ├── auth-layout/
+    │   └── main-layout/
+    │
+    └── shared/
+        └── components/
+            ├── header/
+            ├── sidebar/
+            └── loader/
+```
+
+## Important Note
+
+The `--type` option changes the generated filename suffix, but it **does not change what generator you are using**.
+
+For example:
+
+```bash
+ng g c
+```
+
+always generates a **component**.
+
+So:
+
+```bash
+ng g c login --type=page
+```
+
+means:
+
+> Generate a component named `login`, but use the `.page.ts` suffix.
+
+It does **not** mean "generate a page as a completely different Angular artifact."
+
+For `constants.ts`, there is no appropriate Angular CLI generator, so manual file creation is the clean approach.
