@@ -1,7 +1,9 @@
 import { Routes } from '@angular/router';
 
 export const routes: Routes = [
+  // ====================
   // PUBLIC
+  // ====================
   {
     path: '',
     loadComponent: () =>
@@ -13,8 +15,9 @@ export const routes: Routes = [
       },
     ],
   },
-
+  // ====================
   //   AUTH
+  // ====================
   {
     path: '',
     loadComponent: () => import('../app/layouts/auth-layout/auth-layout').then((c) => c.AuthLayout),
@@ -33,18 +36,46 @@ export const routes: Routes = [
 
   // MAIN
   {
-    path: '',
+    path: 'pages',
     loadComponent: () => import('../app/layouts/main-layout/main-layout').then((c) => c.MainLayout),
     children: [
+      // ====================
+      // CUSTOMER
+      // ====================
       {
-        path: '',
-        loadComponent: () =>
-          import('../app/features/customer/dashboard/dashboard').then((c) => c.Dashboard),
+        path: 'customer',
+        children: [
+          {
+            path: 'dashboard',
+            loadComponent: () =>
+              import('../app/features/customer/dashboard/dashboard').then((c) => c.Dashboard),
+          },
+          {
+            path: 'apply-loan',
+            loadComponent: () =>
+              import('../app/features/customer/apply-loan/apply-loan').then((c) => c.ApplyLoan),
+          },
+        ],
       },
+      // ====================
+      //   EMPLOYEE
+      // ====================
       {
-        path: '',
-        loadComponent: () =>
-          import('../app/features/employee/dashboard/dashboard').then((c) => c.Dashboard),
+        path: 'employee',
+        children: [
+          {
+            path: 'dashboard',
+            loadComponent: () =>
+              import('../app/features/employee/dashboard/dashboard').then((c) => c.Dashboard),
+          },
+          {
+            path: 'applications',
+            loadComponent: () =>
+              import('../app/features/employee/applications/applications').then(
+                (c) => c.Applications,
+              ),
+          },
+        ],
       },
     ],
   },
