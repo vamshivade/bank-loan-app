@@ -79,4 +79,12 @@ export const routes: Routes = [
       },
     ],
   },
+
+  // ====================
+  //   FALL BACK
+  // ====================
+  {
+    path: '**',
+    redirectTo: '',
+  },
 ];
