@@ -46,11 +46,13 @@ export const routes: Routes = [
         path: 'customer',
         children: [
           {
+            // pages/customer/dashboard
             path: 'dashboard',
             loadComponent: () =>
               import('../app/features/customer/dashboard/dashboard').then((c) => c.Dashboard),
           },
           {
+            // pages/customer/apply-loan
             path: 'apply-loan',
             loadComponent: () =>
               import('../app/features/customer/apply-loan/apply-loan').then((c) => c.ApplyLoan),

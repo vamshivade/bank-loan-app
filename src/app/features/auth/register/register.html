@@ -4,7 +4,6 @@
   <!-- ================= BACKGROUND ================= -->
 
   <div class="pointer-events-none absolute inset-0 overflow-hidden">
-
     <!-- Top-left glow -->
     <div
       class="absolute -left-32 -top-32 h-80 w-80 rounded-full bg-emerald-500/10 blur-[100px]"
@@ -19,32 +18,26 @@
     <div
       class="absolute left-1/2 top-1/2 h-72 w-72 -translate-x-1/2 -translate-y-1/2 rounded-full bg-emerald-500/[0.03] blur-[100px]"
     ></div>
-
   </div>
 
   <!-- ================= MAIN ================= -->
 
   <div class="relative z-10 w-full max-w-[720px]">
-
     <!-- ================= CARD ================= -->
 
     <div
       class="rounded-2xl border border-white/10 bg-white/[0.055] px-5 py-5 shadow-2xl shadow-black/50 backdrop-blur-2xl sm:px-7 sm:py-6"
     >
-
       <!-- ================= TOP NAVIGATION ================= -->
 
       <div class="mb-6 flex items-center justify-between">
-
         <!-- Home -->
 
         <a
           routerLink="/"
           class="group inline-flex items-center gap-2 rounded-lg border border-white/[0.07] bg-white/[0.025] px-3 py-2 text-xs font-medium text-gray-400 transition duration-200 hover:border-emerald-400/20 hover:bg-emerald-400/[0.05] hover:text-white"
         >
-          <span
-            class="text-sm transition-transform duration-200 group-hover:-translate-x-0.5"
-          >
+          <span class="text-sm transition-transform duration-200 group-hover:-translate-x-0.5">
             ←
           </span>
 
@@ -54,10 +47,7 @@
         <!-- Login -->
 
         <div class="flex items-center gap-2 text-xs">
-
-          <span class="text-gray-600">
-            Already have an account?
-          </span>
+          <span class="text-gray-600"> Already have an account? </span>
 
           <a
             routerLink="/login"
@@ -65,194 +55,173 @@
           >
             Sign in
           </a>
-
         </div>
-
       </div>
 
       <!-- ================= HEADER ================= -->
 
       <div class="mb-6">
-
-        <p
-          class="mb-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-emerald-400"
-        >
+        <p class="mb-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-emerald-400">
           Create account
         </p>
 
-        <div
-          class="flex flex-col gap-1 sm:flex-row sm:items-end sm:justify-between"
-        >
-
-          <h1
-            class="text-2xl font-semibold tracking-tight sm:text-[27px]"
-          >
+        <div class="flex flex-col gap-1 sm:flex-row sm:items-end sm:justify-between">
+          <h1 class="text-2xl font-semibold tracking-tight sm:text-[27px]">
             Open your CapitalAxis account
           </h1>
 
-          <p class="text-xs text-gray-500">
-            It's quick and secure.
-          </p>
-
+          <p class="text-xs text-gray-500">It's quick and secure.</p>
         </div>
-
       </div>
 
       <!-- ================= FORM ================= -->
 
-      <form class="space-y-4">
-
-        <!-- Username + Full Name -->
-
+      <form class="space-y-4" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
         <div class="grid gap-4 sm:grid-cols-2">
-
           <!-- Username -->
-
           <div>
-
-            <label
-              for="username"
-              class="mb-1.5 block text-xs font-medium text-gray-300"
-            >
+            <label for="userName" class="mb-1.5 block text-xs font-medium text-gray-300">
               Username
             </label>
 
             <input
-              id="username"
+              id="userName"
+              formControlName="userName"
               type="text"
               placeholder="Choose username"
               autocomplete="username"
               class="h-11 w-full rounded-lg border border-white/10 bg-black/30 px-3.5 text-sm text-white outline-none transition duration-200 placeholder:text-gray-600 focus:border-emerald-400/50 focus:bg-black/40 focus:ring-2 focus:ring-emerald-400/10"
             />
 
+            @if (f.userName.touched && f.userName.invalid) {
+              @if (f.userName.errors?.['required']) {
+                <p class="text-sm text-red-500 mt-1">Username is required</p>
+              }
+              @if (f.userName.errors?.['minlength']) {
+                <p class="mt-1 text-sm text-red-500">Username must be at least 6 characters</p>
+              }
+            }
           </div>
 
           <!-- Full Name -->
-
           <div>
-
-            <label
-              for="fullName"
-              class="mb-1.5 block text-xs font-medium text-gray-300"
-            >
+            <label for="fullName" class="mb-1.5 block text-xs font-medium text-gray-300">
               Full Name
             </label>
 
             <input
               id="fullName"
+              formControlName="fullName"
               type="text"
               placeholder="Enter full name"
               autocomplete="name"
               class="h-11 w-full rounded-lg border border-white/10 bg-black/30 px-3.5 text-sm text-white outline-none transition duration-200 placeholder:text-gray-600 focus:border-emerald-400/50 focus:bg-black/40 focus:ring-2 focus:ring-emerald-400/10"
             />
 
+            @if (f.fullName.touched && f.fullName.invalid) {
+              @if (f.fullName.errors?.['required']) {
+                <p class="mt-1 text-sm text-red-500">Full name is required</p>
+              }
+              @if (f.fullName.errors?.['minlength']) {
+                <p class="mt-1 text-sm text-red-500">Full name must be at least 6 characters</p>
+              }
+            }
           </div>
-
         </div>
-
-        <!-- Email -->
-
-        <div>
-
-          <label
-            for="email"
-            class="mb-1.5 block text-xs font-medium text-gray-300"
-          >
-            Email Address
-          </label>
-
-          <input
-            id="email"
-            type="email"
-            placeholder="you@example.com"
-            autocomplete="email"
-            class="h-11 w-full rounded-lg border border-white/10 bg-black/30 px-3.5 text-sm text-white outline-none transition duration-200 placeholder:text-gray-600 focus:border-emerald-400/50 focus:bg-black/40 focus:ring-2 focus:ring-emerald-400/10"
-          />
-
-        </div>
-
-        <!-- Password + Confirm -->
 
         <div class="grid gap-4 sm:grid-cols-2">
+          <!-- Email -->
+          <div>
+            <label for="emailId" class="mb-1.5 block text-xs font-medium text-gray-300">
+              Email Address
+            </label>
+
+            <input
+              id="emailId"
+              formControlName="emailId"
+              type="email"
+              placeholder="you@example.com"
+              autocomplete="email"
+              class="h-11 w-full rounded-lg border border-white/10 bg-black/30 px-3.5 text-sm text-white outline-none transition duration-200 placeholder:text-gray-600 focus:border-emerald-400/50 focus:bg-black/40 focus:ring-2 focus:ring-emerald-400/10"
+            />
+            @if (f.emailId.touched && f.emailId.invalid) {
+              @if (f.emailId.errors?.['required']) {
+                <p class="mt-1 text-sm text-red-500">Email is required.</p>
+              }
+
+              @if (f.emailId.errors?.['email']) {
+                <p class="mt-1 text-sm text-red-500">Please enter a valid email address.</p>
+              }
+            }
+          </div>
 
           <!-- Password -->
-
           <div>
-
-            <label
-              for="password"
-              class="mb-1.5 block text-xs font-medium text-gray-300"
-            >
+            <label for="password" class="mb-1.5 block text-xs font-medium text-gray-300">
               Password
             </label>
 
             <input
               id="password"
+              formControlName="password"
               type="password"
               placeholder="Create password"
               autocomplete="new-password"
               class="h-11 w-full rounded-lg border border-white/10 bg-black/30 px-3.5 text-sm text-white outline-none transition duration-200 placeholder:text-gray-600 focus:border-emerald-400/50 focus:bg-black/40 focus:ring-2 focus:ring-emerald-400/10"
             />
+            @if (f.password.touched && f.password.invalid) {
+              @if (f.password.errors?.['required']) {
+                <p class="mt-1 text-sm text-red-500">Password is required.</p>
+              }
 
+              @if (f.password.errors?.['minlength']) {
+                <p class="mt-1 text-sm text-red-500">Password must be at least 6 characters.</p>
+              }
+            }
           </div>
-
-          <!-- Confirm Password -->
-
-          <div>
-
-            <label
-              for="confirmPassword"
-              class="mb-1.5 block text-xs font-medium text-gray-300"
-            >
-              Confirm Password
-            </label>
-
-            <input
-              id="confirmPassword"
-              type="password"
-              placeholder="Confirm password"
-              autocomplete="new-password"
-              class="h-11 w-full rounded-lg border border-white/10 bg-black/30 px-3.5 text-sm text-white outline-none transition duration-200 placeholder:text-gray-600 focus:border-emerald-400/50 focus:bg-black/40 focus:ring-2 focus:ring-emerald-400/10"
-            />
-
-          </div>
-
         </div>
 
         <!-- Terms -->
 
         <div class="flex items-start gap-2.5 pt-1">
-
           <input
             id="terms"
             type="checkbox"
             class="mt-0.5 h-3.5 w-3.5 cursor-pointer rounded border-white/20 bg-black/30 accent-emerald-400"
           />
 
-          <label
-            for="terms"
-            class="cursor-pointer text-[11px] leading-4 text-gray-500"
-          >
+          <label for="terms" class="cursor-pointer text-[11px] leading-4 text-gray-500">
             I agree to the
 
-            <a
-              routerLink="/terms"
-              class="text-gray-300 transition hover:text-white"
-            >
+            <a routerLink="/terms" class="text-gray-300 transition hover:text-white">
               Terms & Conditions
             </a>
 
             and
 
-            <a
-              routerLink="/privacy"
-              class="text-gray-300 transition hover:text-white"
-            >
-              Privacy Policy
-            </a>.
+            <a routerLink="/privacy" class="text-gray-300 transition hover:text-white">
+              Privacy Policy </a
+            >.
           </label>
-
         </div>
+
+        <!-- Error Message -->
+
+        @if (errorMessage()) {
+          <div
+            class="mb-5 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700"
+          >
+            {{ errorMessage() }}
+          </div>
+        }
+
+        @if (successMessage()) {
+          <div
+            class="mb-5 rounded-lg border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-700"
+          >
+            {{ successMessage() }}
+          </div>
+        }
 
         <!-- Create Account -->
 
@@ -260,18 +229,14 @@
           type="submit"
           class="h-11 w-full rounded-lg bg-emerald-400 text-sm font-semibold text-black transition duration-200 hover:bg-emerald-300 active:scale-[0.99]"
         >
-          Create Account
+          {{ isLoading() ? 'Creating Account...' : 'Create Account' }}
         </button>
-
       </form>
 
       <!-- ================= BOTTOM LOGIN ================= -->
 
       <div class="mt-5 flex items-center justify-center gap-1.5 text-center">
-
-        <span class="text-xs text-gray-500">
-          Already have an account?
-        </span>
+        <span class="text-xs text-gray-500"> Already have an account? </span>
 
         <a
           routerLink="/login"
@@ -279,9 +244,7 @@
         >
           Sign in
         </a>
-
       </div>
-
     </div>
 
     <!-- ================= FOOTER ================= -->
@@ -291,7 +254,5 @@
       <span class="mx-1 text-gray-700">·</span>
       Secure digital banking
     </p>
-
   </div>
-
 </div>
