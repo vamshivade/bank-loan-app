@@ -91,13 +91,13 @@ src/app/core/constants/constants.ts
 **Full command:**
 
 ```bash
-ng generate guard core/guards/auth --type=guard
+ng generate guard core/guards/auth 
 ```
 
 **Shortcut:**
 
 ```bash
-ng g g core/guards/auth --type=guard
+ng g g core/guards/auth 
 ```
 
 Expected file:
@@ -605,7 +605,7 @@ ng g s core/services/auth --type=service
 ## Step 4 – Guard
 
 ```bash
-ng g g core/guards/auth --type=guard
+ng g g core/guards/auth 
 ```
 
 ---

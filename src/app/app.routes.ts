@@ -3,6 +3,7 @@ import { Routes } from '@angular/router';
 import { authGuard } from './core/guards/auth-guard';
 import { roleGuard } from './core/guards/role-guard';
 import { ROLE_CONSTANTS } from './core/constants/role.constants';
+import { publicGuard } from './core/guards/public-guard';
 
 export const routes: Routes = [
   // =========================================================
@@ -10,6 +11,7 @@ export const routes: Routes = [
   // =========================================================
   {
     path: '',
+    canActivate: [publicGuard],
     loadComponent: () =>
       import('../app/layouts/public-layout/public-layout').then((c) => c.PublicLayout),
 
@@ -26,6 +28,7 @@ export const routes: Routes = [
   // =========================================================
   {
     path: '',
+    canActivate: [publicGuard],
     loadComponent: () => import('../app/layouts/auth-layout/auth-layout').then((c) => c.AuthLayout),
 
     children: [
