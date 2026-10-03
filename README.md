@@ -113,13 +113,13 @@ src/app/core/guards/auth.guard.ts
 **Full command:**
 
 ```bash
-ng generate interceptor core/interceptors/auth --type=interceptor
+ng generate interceptor core/interceptors/auth 
 ```
 
 **Shortcut:**
 
 ```bash
-ng g interceptor core/interceptors/auth --type=interceptor
+ng g interceptor core/interceptors/auth 
 ```
 
 Expected file:
@@ -613,7 +613,7 @@ ng g g core/guards/auth --type=guard
 ## Step 5 – Interceptor
 
 ```bash
-ng g interceptor core/interceptors/auth --type=interceptor
+ng g interceptor core/interceptors/auth 
 ```
 
 ---
