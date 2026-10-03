@@ -1,1 +1,270 @@
-<p>customer dashboard works!</p>
+<div class="flex flex-col gap-6">
+  <!-- Page Header -->
+  <div class="flex items-center justify-between">
+    <div>
+      <h2 class="text-2xl font-bold tracking-tight text-slate-800">Overview</h2>
+      <p class="mt-1 text-sm text-slate-500">Here's what's happening with your accounts today.</p>
+    </div>
+    <div>
+      <button
+        class="flex items-center gap-2 rounded-xl bg-blue-600 px-5 py-2.5 font-medium text-white shadow-lg shadow-blue-600/30 transition-all hover:bg-blue-700"
+      >
+        <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+        </svg>
+        Apply for Loan
+      </button>
+    </div>
+  </div>
+
+  <!-- Summary Cards Row -->
+  <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
+    <!-- Total Loan Balance -->
+    <div
+      class="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-slate-100 bg-white p-6 shadow-sm"
+    >
+      <div
+        class="absolute right-0 top-0 -translate-y-4 translate-x-4 p-4 opacity-10 transition-transform duration-500 group-hover:scale-110"
+      >
+        <svg class="h-24 w-24 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+          ></path>
+        </svg>
+      </div>
+      <div class="relative z-10">
+        <p class="text-sm font-semibold tracking-wide text-slate-500 uppercase">Total Balance</p>
+        <h3 class="mt-2 text-3xl font-bold text-slate-800">$24,500.00</h3>
+        <p class="mt-2 flex items-center gap-1 text-sm font-medium text-emerald-600">
+          <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
+          </svg>
+          Fully funded
+        </p>
+      </div>
+    </div>
+
+    <!-- Next Payment -->
+    <div
+      class="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-slate-100 bg-white p-6 shadow-sm"
+    >
+      <div class="relative z-10">
+        <p class="text-sm font-semibold tracking-wide text-slate-500 uppercase">Next Payment</p>
+        <h3 class="mt-2 text-3xl font-bold text-slate-800">$450.00</h3>
+        <p class="mt-2 text-sm text-slate-500">
+          Due on
+          <span class="font-semibold text-slate-700">Oct 15, 2026</span>
+        </p>
+      </div>
+      <div class="relative z-10 mt-4">
+        <button class="text-sm font-medium text-blue-600 hover:text-blue-700 hover:underline">Pay now &rarr;</button>
+      </div>
+    </div>
+
+    <!-- Active Loans -->
+    <div
+      class="relative flex flex-col justify-between overflow-hidden rounded-2xl bg-gradient-to-br from-slate-800 to-slate-900 p-6 text-white shadow-xl shadow-slate-900/20"
+    >
+      <!-- Decorative circles -->
+      <div class="absolute right-0 top-0 h-32 w-32 -translate-y-8 translate-x-8 transform rounded-full bg-white/5 blur-2xl"></div>
+
+      <div class="relative z-10">
+        <p class="text-sm font-medium tracking-wide text-slate-300 uppercase">Active Loans</p>
+        <div class="mt-2 flex items-end gap-3">
+          <h3 class="text-4xl font-bold">2</h3>
+          <p class="mb-1 text-slate-400">Loans</p>
+        </div>
+      </div>
+      <div class="relative z-10 mt-4">
+        <p class="text-sm text-slate-300">All accounts are in good standing.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Loan Applications & Status -->
+  <div class="overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-sm">
+    <div class="flex items-center justify-between border-b border-slate-100 p-6">
+      <h3 class="text-lg font-bold text-slate-800">Your Applications & Loans</h3>
+      <button class="text-sm font-medium text-slate-500 transition-colors hover:text-blue-600">View all</button>
+    </div>
+
+    <div class="overflow-x-auto">
+      <table class="w-full border-collapse text-left">
+        <thead>
+          <tr class="border-b border-slate-100 bg-slate-50 text-xs font-semibold tracking-wider text-slate-500 uppercase">
+            <th class="p-4 pl-6">Loan Type</th>
+            <th class="p-4">Amount</th>
+            <th class="p-4">Date Applied</th>
+            <th class="p-4">Status</th>
+            <th class="p-4 pr-6 text-right">Action</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-slate-100 text-sm text-slate-700">
+          <!-- Row 1: Approved -->
+          <tr class="transition-colors hover:bg-slate-50/50">
+            <td class="p-4 pl-6">
+              <div class="flex items-center gap-3">
+                <div class="flex h-10 w-10 items-center justify-center rounded-full bg-emerald-100 text-emerald-600">
+                  <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+                    ></path>
+                  </svg>
+                </div>
+                <div>
+                  <p class="font-bold text-slate-800">Home Mortgage</p>
+                  <p class="mt-0.5 text-xs text-slate-500">ID: LN-20491X</p>
+                </div>
+              </div>
+            </td>
+            <td class="p-4 font-semibold text-slate-800">$450,000</td>
+            <td class="p-4 text-slate-500">Sep 12, 2026</td>
+            <td class="p-4">
+              <span
+                class="inline-flex items-center gap-1.5 rounded-full border border-emerald-200 bg-emerald-50 px-2.5 py-1 text-xs font-semibold text-emerald-700"
+              >
+                <span class="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
+                Approved
+              </span>
+            </td>
+            <td class="p-4 pr-6 text-right">
+              <button class="font-medium text-blue-600 hover:text-blue-800">Details</button>
+            </td>
+          </tr>
+
+          <!-- Row 2: Pending -->
+          <tr class="transition-colors hover:bg-slate-50/50">
+            <td class="p-4 pl-6">
+              <div class="flex items-center gap-3">
+                <div class="flex h-10 w-10 items-center justify-center rounded-full bg-amber-100 text-amber-600">
+                  <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"
+                    ></path>
+                  </svg>
+                </div>
+                <div>
+                  <p class="font-bold text-slate-800">Personal Loan</p>
+                  <p class="mt-0.5 text-xs text-slate-500">ID: LN-88312M</p>
+                </div>
+              </div>
+            </td>
+            <td class="p-4 font-semibold text-slate-800">$10,000</td>
+            <td class="p-4 text-slate-500">Oct 01, 2026</td>
+            <td class="p-4">
+              <span
+                class="inline-flex items-center gap-1.5 rounded-full border border-amber-200 bg-amber-50 px-2.5 py-1 text-xs font-semibold text-amber-700"
+              >
+                <span class="h-1.5 w-1.5 animate-pulse rounded-full bg-amber-500"></span>
+                Under Review
+              </span>
+            </td>
+            <td class="p-4 pr-6 text-right">
+              <button class="font-medium text-blue-600 hover:text-blue-800">Track</button>
+            </td>
+          </tr>
+
+          <!-- Row 3: Rejected -->
+          <tr class="transition-colors hover:bg-slate-50/50">
+            <td class="p-4 pl-6">
+              <div class="flex items-center gap-3">
+                <div class="flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 text-slate-600">
+                  <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                  </svg>
+                </div>
+                <div>
+                  <p class="font-bold text-slate-800">Auto Loan</p>
+                  <p class="mt-0.5 text-xs text-slate-500">ID: LN-50921Q</p>
+                </div>
+              </div>
+            </td>
+            <td class="p-4 font-semibold text-slate-800">$25,000</td>
+            <td class="p-4 text-slate-500">Aug 20, 2026</td>
+            <td class="p-4">
+              <span
+                class="inline-flex items-center gap-1.5 rounded-full border border-red-200 bg-red-50 px-2.5 py-1 text-xs font-semibold text-red-700"
+              >
+                <span class="h-1.5 w-1.5 rounded-full bg-red-500"></span>
+                Declined
+              </span>
+            </td>
+            <td class="p-4 pr-6 text-right">
+              <button class="font-medium text-slate-400 hover:text-slate-600">View Info</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Recent Activity & Support -->
+  <div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
+    <!-- Promotional / Support Banner -->
+    <div
+      class="relative flex items-center overflow-hidden rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-700 p-8 text-white shadow-md"
+    >
+      <div class="relative z-10">
+        <h3 class="mb-2 text-2xl font-bold">Need a higher limit?</h3>
+        <p class="mb-6 max-w-sm text-blue-100">
+          Upgrade to our Premium Banking tier to unlock lower interest rates and priority processing on your next loan application.
+        </p>
+        <button class="rounded-lg bg-white px-6 py-2.5 font-bold text-blue-700 shadow-sm transition-colors hover:bg-slate-50">
+          Learn More
+        </button>
+      </div>
+      <div class="absolute -bottom-8 -right-8 opacity-20">
+        <svg class="h-64 w-64" fill="currentColor" viewBox="0 0 24 24">
+          <path
+            d="M11 20.933a10.003 10.003 0 008-8h-8v8zm-2 0v-8H1.067a10.003 10.003 0 008 8zm0-10H1.067a10.003 10.003 0 018-8v8zm2-8v8h8a10.003 10.003 0 01-8-8z"
+          ></path>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Quick Action / Info -->
+    <div class="rounded-2xl border border-slate-100 bg-white p-6 shadow-sm">
+      <h3 class="mb-4 text-lg font-bold text-slate-800">Your Loan Officer</h3>
+      <div class="flex items-center gap-4 rounded-xl border border-slate-100 bg-slate-50 p-4">
+        <div class="flex h-12 w-12 items-center justify-center overflow-hidden rounded-full border-2 border-white bg-blue-200">
+          <img
+            src="https://ui-avatars.com/api/?name=Sarah+Jenkins&background=bfdbfe&color=1e40af"
+            alt="Agent"
+            class="h-full w-full object-cover"
+          />
+        </div>
+        <div class="flex-1">
+          <p class="font-bold text-slate-800">Sarah Jenkins</p>
+          <p class="text-sm text-slate-500">Senior Loan Specialist</p>
+        </div>
+        <div>
+          <button
+            class="flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 transition-colors hover:bg-slate-50 hover:text-blue-600"
+          >
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+              ></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <p class="mt-4 leading-relaxed text-sm text-slate-500">
+        Sarah is here to assist you with any questions about your current applications or options for refinancing. Feel free to send a
+        message.
+      </p>
+    </div>
+  </div>
+</div>
