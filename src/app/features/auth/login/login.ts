@@ -4,6 +4,7 @@ import { AuthService } from '../../../core/services/auth.service';
 import { inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { signal } from '@angular/core';
+import { ROLE_CONSTANTS, ROLE_ROUTES } from '../../../core/constants/role.constants';
 
 @Component({
   selector: 'app-login',
@@ -28,6 +29,20 @@ export class Login {
 
   get f() {
     return this.loginForm.controls;
+  }
+
+  private navigateByRole(): void {
+    const role = this.authService.getCurrentUserRole();
+
+    if (role === ROLE_CONSTANTS.CUSTOMER) {
+      this.router.navigate([ROLE_ROUTES[ROLE_CONSTANTS.CUSTOMER]]);
+      return;
+    }
+    if (role === ROLE_CONSTANTS.BANK_EMPLOYEE) {
+      this.router.navigate([ROLE_ROUTES[ROLE_CONSTANTS.BANK_EMPLOYEE]]);
+    }
+    this.authService.logout();
+    this.router.navigate(['/login']);
   }
 
   async onSubmit() {
@@ -60,9 +75,7 @@ export class Login {
 
         this.loginForm.reset();
 
-        setTimeout(() => {
-          this.router.navigate(['/pages/customer']);
-        }, 1500);
+        this.navigateByRole();
       }
     } catch (error: any) {
       console.log('Login Error:', error);

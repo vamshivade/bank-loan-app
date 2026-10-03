@@ -73,9 +73,7 @@ export class Register {
         this.registerForm.reset();
 
         // Navigate to login after successful registration
-        setTimeout(() => {
-          this.router.navigate(['/login']);
-        }, 1500);
+        this.router.navigate(['/login']);
       } else {
         this.errorMessage.set(response?.message || 'Registration Failed.');
       }
