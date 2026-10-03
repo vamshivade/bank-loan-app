@@ -11,4 +11,8 @@ export const API_CONSTANTS = {
     REGISTER_CUSTOMER: '/api/BankLoan/RegisterCustomer',
     REGISTER_BANK_USER: '/api/BankLoan/RegisterAsBankUser',
   },
+
+  APPLICATION: {
+    ADD_APPLICATION: '/api/BankLoan/AddNewApplication',
+  },
 };
