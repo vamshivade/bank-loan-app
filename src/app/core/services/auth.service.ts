@@ -83,6 +83,7 @@ export class AuthService {
     // Save authentication session after successful login
     if (response.result && response.data) {
       this.setAuthenticatedSession(response?.data, dummyToken);
+      response.token = dummyToken;
     }
 
     return response;

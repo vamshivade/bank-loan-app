@@ -72,21 +72,28 @@
 
       <!-- ================= FORM ================= -->
 
-      <form class="space-y-4">
+      <form class="space-y-4" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <!-- Username -->
 
         <div>
-          <label for="username" class="mb-1.5 block text-xs font-medium text-gray-300">
+          <label for="userName" class="mb-1.5 block text-xs font-medium text-gray-300">
             Username
           </label>
 
           <input
-            id="username"
+            id="userName"
+            formControlName="userName"
             type="text"
             placeholder="Enter your username"
             autocomplete="username"
             class="h-11 w-full rounded-lg border border-white/10 bg-black/30 px-3.5 text-sm text-white outline-none transition duration-200 placeholder:text-gray-600 focus:border-emerald-400/50 focus:bg-black/40 focus:ring-2 focus:ring-emerald-400/10"
           />
+
+          @if (f.userName.touched && f.userName.invalid) {
+            @if (f.userName.errors?.['required']) {
+              <p class="mt-1 text-sm text-red-500">Username is required</p>
+            }
+          }
         </div>
 
         <!-- Password -->
@@ -105,11 +112,18 @@
 
           <input
             id="password"
+            formControlName="password"
             type="password"
             placeholder="Enter your password"
             autocomplete="current-password"
             class="h-11 w-full rounded-lg border border-white/10 bg-black/30 px-3.5 text-sm text-white outline-none transition duration-200 placeholder:text-gray-600 focus:border-emerald-400/50 focus:bg-black/40 focus:ring-2 focus:ring-emerald-400/10"
           />
+
+          @if (f.password.touched && f.password.invalid) {
+            @if (f.password.errors?.['required']) {
+              <p class="mt-1 text-sm text-red-500">Password is required</p>
+            }
+          }
         </div>
 
         <!-- Remember -->
@@ -124,13 +138,30 @@
           <label for="remember" class="cursor-pointer text-xs text-gray-500"> Remember me </label>
         </div>
 
+        @if (errorMessage()) {
+          <div
+            class="mb-4 rounded-lg border border-red-500/20 bg-red-500/10 px-4 py-3 text-sm text-red-400"
+          >
+            {{ errorMessage() }}
+          </div>
+        }
+
+        @if (successMessage()) {
+          <div
+            class="mb-4 rounded-lg border border-emerald-500/20 bg-emerald-500/10 px-4 py-3 text-sm text-emerald-400"
+          >
+            {{ successMessage() }}
+          </div>
+        }
+
         <!-- Login Button -->
 
         <button
           type="submit"
+          [disabled]="isLoading()"
           class="h-11 w-full rounded-lg bg-emerald-400 text-sm font-semibold text-black transition duration-200 hover:bg-emerald-300 active:scale-[0.99]"
         >
-          Sign In
+          {{ isLoading() ? 'Signing In...' : 'Sign In' }}
         </button>
       </form>
 

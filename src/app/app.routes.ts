@@ -46,8 +46,8 @@ export const routes: Routes = [
         path: 'customer',
         children: [
           {
-            // pages/customer/dashboard
-            path: 'dashboard',
+            // pages/customer
+            path: '',
             loadComponent: () =>
               import('../app/features/customer/dashboard/dashboard').then((c) => c.Dashboard),
           },
@@ -66,7 +66,7 @@ export const routes: Routes = [
         path: 'employee',
         children: [
           {
-            path: 'dashboard',
+            path: '',
             loadComponent: () =>
               import('../app/features/employee/dashboard/dashboard').then((c) => c.Dashboard),
           },

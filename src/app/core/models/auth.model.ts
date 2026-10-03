@@ -9,7 +9,7 @@ export interface RegisterPayload {
 // 2. The raw shape returned by the backend API
 export interface RegisterResponse {
   message: string;
-  result: string;
+  result: boolean;
   data: string | null;
 }
 
@@ -36,6 +36,6 @@ export interface LoginUser {
 export interface LoginResponse {
   token?: string;
   message: string;
-  result: string;
+  result: boolean;
   data: LoginUser | null;
 }

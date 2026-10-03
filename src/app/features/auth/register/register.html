@@ -227,6 +227,7 @@
 
         <button
           type="submit"
+          [disabled]="isLoading()"
           class="h-11 w-full rounded-lg bg-emerald-400 text-sm font-semibold text-black transition duration-200 hover:bg-emerald-300 active:scale-[0.99]"
         >
           {{ isLoading() ? 'Creating Account...' : 'Create Account' }}

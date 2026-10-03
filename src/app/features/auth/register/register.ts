@@ -47,6 +47,11 @@ export class Register {
       return;
     }
 
+    // Prevent duplicate requests
+    if (this.isLoading()) {
+      return;
+    }
+
     this.isLoading.set(true);
 
     try {
@@ -61,7 +66,7 @@ export class Register {
       console.log('Register Response:', response);
 
       // API result
-      if (response.result) {
+      if (response.result === true) {
         this.successMessage.set(response?.message || 'Registration Successful.');
 
         // Reset form
