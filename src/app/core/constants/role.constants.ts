@@ -5,5 +5,5 @@ export const ROLE_CONSTANTS = {
 
 export const ROLE_ROUTES = {
   [ROLE_CONSTANTS.CUSTOMER]: '/pages/customer',
-  [ROLE_CONSTANTS.BANK_EMPLOYEE]: '/pages/bank-employee',
+  [ROLE_CONSTANTS.BANK_EMPLOYEE]: '/pages/employee',
 } as const;

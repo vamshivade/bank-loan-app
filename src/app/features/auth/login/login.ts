@@ -33,6 +33,7 @@ export class Login {
 
   private navigateByRole(): void {
     const role = this.authService.getCurrentUserRole();
+    console.log(role)
 
     if (role === ROLE_CONSTANTS.CUSTOMER) {
       this.router.navigate([ROLE_ROUTES[ROLE_CONSTANTS.CUSTOMER]]);
@@ -40,6 +41,7 @@ export class Login {
     }
     if (role === ROLE_CONSTANTS.BANK_EMPLOYEE) {
       this.router.navigate([ROLE_ROUTES[ROLE_CONSTANTS.BANK_EMPLOYEE]]);
+      return;
     }
     this.authService.logout();
     this.router.navigate(['/login']);
