@@ -14,5 +14,8 @@ export const API_CONSTANTS = {
 
   APPLICATION: {
     ADD_APPLICATION: '/api/BankLoan/AddNewApplication',
+    GET_MY_APPLICATIONS: '/api/BankLoan/GetMyApplications',
   },
+
+  USER: {},
 };

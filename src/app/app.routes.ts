@@ -86,6 +86,13 @@ export const routes: Routes = [
             loadComponent: () =>
               import('../app/features/customer/apply-loan/apply-loan').then((c) => c.ApplyLoan),
           },
+          {
+            path: 'applications',
+            loadComponent: () =>
+              import('./features/customer/applications/applications.page').then(
+                (c) => c.ApplicationsPage,
+              ),
+          },
         ],
       },
 
