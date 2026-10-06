@@ -1,10 +1,21 @@
 import { Component, inject, signal } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule, AbstractControl, ValidationErrors } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { AuthService } from '../../../core/services/auth.service';
 import { ApplicationService } from '../../../core/services/application.service';
 import { Router } from '@angular/router';
 import { AddApplicationRequest } from '../../../core/models/application.model';
+
+function pastDateValidator(control: AbstractControl): ValidationErrors | null {
+  if (!control.value) return null;
+  const selectedDate = new Date(control.value);
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  if (selectedDate > today) {
+    return { futureDate: true };
+  }
+  return null;
+}
 
 @Component({
   selector: 'app-apply-loan',
@@ -26,22 +37,22 @@ export class ApplyLoan {
   applicationForm = this.fb.nonNullable.group({
     // Applicant details
     fullName: ['', [Validators.required, Validators.minLength(6)]],
-    panCard: ['', [Validators.required, Validators.pattern(/^[A-Z]{5}[0-9]{4}[A-Z]{1}$/)]],
-    dateOfBirth: ['', Validators.required],
+    panCard: ['', [Validators.required, Validators.pattern(/^[A-Z]{5}[0-9]{4}[A-Z]{1}$/i)]],
+    dateOfBirth: ['', [Validators.required, pastDateValidator]],
     email: ['', [Validators.required, Validators.email]],
-    phone: ['', [Validators.required, Validators.pattern(/^[6-9]\d{9}$/)]],
+    phone: ['', [Validators.required, Validators.pattern(/^0?[6-9]\d{9}$/)]],
     address: ['', Validators.required],
     city: ['', Validators.required],
     state: ['', Validators.required],
     zipCode: ['', [Validators.required, Validators.pattern(/^[1-9][0-9]{5}$/)]],
     annualIncome: ['', [Validators.required, Validators.min(1)]],
     employmentStatus: ['', Validators.required],
-    creditScore: [0, [Validators.required, Validators.min(300), Validators.max(900)]],
-    assets: ['', Validators.required],
+    creditScore: ['', [Validators.required, Validators.min(300), Validators.max(900)]],
+    assets: [''],
     // Loan details
     bankName: ['', Validators.required],
-    loanAmount: [0, [Validators.required, Validators.min(1)]],
-    emi: [0, [Validators.required, Validators.min(1)]],
+    loanAmount: ['', [Validators.required, Validators.min(1)]],
+    emi: ['', [Validators.required, Validators.min(1)]],
   });
 
   constructor() {
@@ -68,8 +79,10 @@ export class ApplyLoan {
 
     if (this.applicationForm.invalid) {
       this.applicationForm.markAllAsTouched();
-      this.errorMessage.set('Please fill out all required fields correctly. Check for any missing or invalid data.');
-      
+      this.errorMessage.set(
+        'Please fill out all required fields correctly. Check for any missing or invalid data.',
+      );
+
       // Helper to log exactly which fields are failing
       const invalidFields = [];
       const controls = this.applicationForm.controls;
@@ -79,7 +92,7 @@ export class ApplyLoan {
         }
       }
       console.log('The form is invalid! The failing fields are:', invalidFields);
-      
+
       return;
     }
 
@@ -91,9 +104,11 @@ export class ApplyLoan {
 
       const payload: AddApplicationRequest = {
         ...formValue,
+        phone: formValue.phone.replace(/^0+/, ''),
         applicantID: 0,
         customerId: Number(user?.userId),
-        applicationStatus: 'pending',
+        creditScore: Number(formValue?.creditScore),
+        applicationStatus: 'Pending',
         annualIncome: Number(formValue.annualIncome),
         dateApplied: new Date().toISOString(),
         loans: [
@@ -106,11 +121,12 @@ export class ApplyLoan {
       };
 
       console.log('Payload to send:', payload);
-      
+
       const response = await this.applicationService.addApplication(payload);
       console.log('Application Submission Response:', response);
       if (response.result === true) {
         this.applicationForm.reset();
+        this.router.navigate(['/pages/customer/applications']);
       }
     } catch (error: any) {
       console.log('Error in Submitting Application:', error);

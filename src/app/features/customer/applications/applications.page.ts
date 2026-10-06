@@ -5,10 +5,11 @@ import { AuthService } from '../../../core/services/auth.service';
 import { signal } from '@angular/core';
 import { MyApplication } from '../../../core/models/user.model';
 import { DatePipe } from '@angular/common';
+import { RouterLink } from '@angular/router'
 
 @Component({
   selector: 'app-applications',
-  imports: [DatePipe],
+  imports: [DatePipe, RouterLink],
   templateUrl: './applications.page.html',
   styleUrl: './applications.page.css',
 })
