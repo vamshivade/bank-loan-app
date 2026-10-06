@@ -1,11 +1,13 @@
 <div class="flex h-screen overflow-hidden bg-slate-50 font-sans text-slate-900">
   <!-- SIDEBAR (Mobile hidden by default, visible on md+) -->
   <aside
-    class="relative z-20 hidden w-72 flex-col bg-slate-900 text-slate-100 shadow-xl transition-all duration-300 md:flex"
+    class="relative z-20 hidden w-72 flex-col text-slate-100 shadow-xl transition-all duration-300 md:flex"
+    [class.bg-slate-900]="isCustomer || !isBankEmployee"
+    [class.bg-emerald-900]="isBankEmployee"
   >
     <!-- BRAND / LOGO -->
     <div
-      class="flex h-20 items-center border-b border-slate-800/60 bg-slate-900/50 px-8 backdrop-blur-sm"
+      class="flex h-20 items-center border-b border-black/20 bg-black/20 px-8 backdrop-blur-sm"
     >
       <div class="flex items-center gap-3">
         <!-- Modern SVG Icon for Bank -->
@@ -31,13 +33,13 @@
 
     <!-- USER WIDGET -->
     @if (currentUser()) {
-      <div class="border-b border-slate-800/60 p-6">
+      <div class="border-b border-black/20 p-6">
         <div class="flex items-center gap-4">
           <div
-            class="flex h-12 w-12 items-center justify-center overflow-hidden rounded-full border-2 border-slate-700 bg-slate-800"
+            class="flex h-12 w-12 items-center justify-center overflow-hidden rounded-full border-2 border-white/20 bg-black/20"
           >
             <svg
-              class="h-7 w-7 text-slate-400"
+              class="h-7 w-7 text-white/60"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -72,9 +74,9 @@
       @if (isCustomer) {
         <a
           routerLink="/pages/customer"
-          routerLinkActive="bg-blue-600/10 text-blue-400 border-blue-500/50"
+          routerLinkActive="bg-white/10 text-white border-white/20"
           [routerLinkActiveOptions]="{ exact: true }"
-          class="group flex items-center gap-3 rounded-lg border border-transparent px-3 py-2.5 text-slate-300 transition-all hover:bg-slate-800 hover:text-white"
+          class="group flex items-center gap-3 rounded-lg border border-transparent px-3 py-2.5 text-white/70 transition-all hover:bg-white/10 hover:text-white"
         >
           <svg
             class="h-5 w-5 text-slate-400 transition-colors group-hover:text-blue-400"
@@ -94,8 +96,8 @@
 
         <a
           routerLink="/pages/customer/apply-loan"
-          routerLinkActive="bg-blue-600/10 text-blue-400 border-blue-500/50"
-          class="group mt-1 flex items-center gap-3 rounded-lg border border-transparent px-3 py-2.5 text-slate-300 transition-all hover:bg-slate-800 hover:text-white"
+          routerLinkActive="bg-white/10 text-white border-white/20"
+          class="group mt-1 flex items-center gap-3 rounded-lg border border-transparent px-3 py-2.5 text-white/70 transition-all hover:bg-white/10 hover:text-white"
         >
           <svg
             class="h-5 w-5 text-slate-400 transition-colors group-hover:text-blue-400"
@@ -114,8 +116,8 @@
         </a>
         <a
           routerLink="/pages/customer/applications"
-          routerLinkActive="bg-blue-600/10 text-blue-400 border-blue-500/50"
-          class="group mt-1 flex items-center gap-3 rounded-lg border border-transparent px-3 py-2.5 text-slate-300 transition-all hover:bg-slate-800 hover:text-white"
+          routerLinkActive="bg-white/10 text-white border-white/20"
+          class="group mt-1 flex items-center gap-3 rounded-lg border border-transparent px-3 py-2.5 text-white/70 transition-all hover:bg-white/10 hover:text-white"
         >
           <svg
             class="h-5 w-5 text-slate-400 transition-colors group-hover:text-blue-400"
@@ -138,9 +140,9 @@
       @if (isBankEmployee) {
         <a
           routerLink="/pages/employee"
-          routerLinkActive="bg-blue-600/10 text-blue-400 border-blue-500/50"
+          routerLinkActive="bg-white/10 text-white border-white/20"
           [routerLinkActiveOptions]="{ exact: true }"
-          class="group flex items-center gap-3 rounded-lg border border-transparent px-3 py-2.5 text-slate-300 transition-all hover:bg-slate-800 hover:text-white"
+          class="group flex items-center gap-3 rounded-lg border border-transparent px-3 py-2.5 text-white/70 transition-all hover:bg-white/10 hover:text-white"
         >
           <svg
             class="h-5 w-5 text-slate-400 transition-colors group-hover:text-blue-400"
@@ -160,8 +162,8 @@
 
         <a
           routerLink="/pages/employee/applications"
-          routerLinkActive="bg-blue-600/10 text-blue-400 border-blue-500/50"
-          class="group mt-1 flex items-center gap-3 rounded-lg border border-transparent px-3 py-2.5 text-slate-300 transition-all hover:bg-slate-800 hover:text-white"
+          routerLinkActive="bg-white/10 text-white border-white/20"
+          class="group mt-1 flex items-center gap-3 rounded-lg border border-transparent px-3 py-2.5 text-white/70 transition-all hover:bg-white/10 hover:text-white"
         >
           <svg
             class="h-5 w-5 text-slate-400 transition-colors group-hover:text-blue-400"
@@ -182,11 +184,11 @@
     </nav>
 
     <!-- LOGOUT -->
-    <div class="border-t border-slate-800/60 p-4">
+    <div class="border-t border-black/20 p-4">
       <button
         type="button"
         (click)="logout()"
-        class="flex w-full items-center justify-center gap-2 rounded-xl border border-slate-700 bg-slate-800 px-4 py-3 font-medium text-slate-300 transition-all hover:border-red-500/30 hover:bg-red-500/10 hover:text-red-400"
+        class="flex w-full items-center justify-center gap-2 rounded-xl border border-white/20 bg-black/20 px-4 py-3 font-medium text-white/80 transition-all hover:border-red-500/50 hover:bg-red-500/20 hover:text-white"
       >
         <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path
